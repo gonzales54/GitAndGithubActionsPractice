@@ -1,0 +1,14 @@
+name: docker-run
+
+on: push
+
+jobs:
+  build:
+    name: docker-run
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Build the docker
+        run: docker-compose up -d
+      - name: run jest
+        run: docker-compose exec app npm run test
