@@ -9,6 +9,6 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - name: Build the docker
-        run: docker-compose up -d
-      - name: run jest
+        run: docker-compose run -rm app npm i
+      - name: Run jest
         run: docker-compose exec app npm run test
