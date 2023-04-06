@@ -11,4 +11,4 @@ jobs:
       - name: Build the docker
         run: docker-compose run -rm app npm i
       - name: Run jest
-        run: run: docker-compose run --rm app npx eslint --fix ./src
+        run: docker-compose run --rm app npx eslint --fix ./src
