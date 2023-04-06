@@ -9,6 +9,8 @@ jobs:
     services:
       app:
         image: node:18
+        user: root
+        working_dir: /home/node/app
         ports:
           - 3000
         options: --name app --init --entrypoint npm
