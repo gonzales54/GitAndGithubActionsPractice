@@ -9,6 +9,8 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - name: Build the docker
-        run: docker-compose run -rm app npm i
+        run: |
+          docker-compose run -rm app npm i
+          docker-compose run --rm app npx eslint --fix ./src
       - name: Run jest
         run: docker-compose run --rm app npx eslint --fix ./src
