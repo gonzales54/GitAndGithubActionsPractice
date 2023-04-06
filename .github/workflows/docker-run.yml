@@ -1,17 +1,32 @@
-name: docker-run
+name: Test
 
 on: push
 
 jobs:
-  build:
-    name: docker-run
+  test:
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v2
-      - name: Build the docker
+
+    services:
+      app:
+        image: node:18
+        ports:
+          - 3000
+        options: --name app --init --entrypoint npm
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and start container
         run: |
-          docker-compose run -rm app npm install
-      - name: Run jest
-        run: |
-          docker-compose run -rm app npm install @typescript-eslint/eslint-plugin@latest --save-dev
-          docker-compose run --rm app npx eslint --fix ./src
+          docker-compose up -d
+          docker-compose ps
+
+      - name: Wait for app to start
+        run: docker-compose logs app | grep -q 'vite server ready'
+
+      - name: Install dependencies
+        run: docker-compose exec app npm ci
+
+      - name: Lint
+        run: docker-compose exec app npm run lint
