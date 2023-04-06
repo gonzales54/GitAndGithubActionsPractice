@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the docker
         run: |
-          docker-compose run -rm app npm i
-          docker-compose run --rm app npx eslint --fix ./src
+          docker-compose run -rm app npm install
       - name: Run jest
+        run: docker-compose run -rm app npm install @typescript-eslint/eslint-plugin@latest --save-dev
         run: docker-compose run --rm app npx eslint --fix ./src
