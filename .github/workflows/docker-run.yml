@@ -23,7 +23,7 @@ jobs:
           docker-compose ps
 
       - name: Install dependencies
-        run: docker-compose exec app npm ci
+        run: docker-compose run --rm app npm ci
 
       - name: Lint
-        run: docker-compose exec app npm run lint
+        run: docker-compose run --rm app npm run lint
