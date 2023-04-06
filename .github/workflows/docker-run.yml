@@ -25,5 +25,8 @@ jobs:
       - name: Install dependencies
         run: docker-compose run --rm app npm ci
 
+      - name: jest
+        run: docker-compose run --rm app npm run test
+
       - name: Lint
         run: docker-compose run --rm app npm run lint
