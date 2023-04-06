@@ -4,6 +4,4 @@ RUN npm i -g npm@latest
 
 USER node
 
-RUN npm i
-
 WORKDIR /home/node/app
