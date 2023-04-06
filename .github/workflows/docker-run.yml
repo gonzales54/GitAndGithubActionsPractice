@@ -22,9 +22,6 @@ jobs:
           docker-compose up -d
           docker-compose ps
 
-      - name: Wait for app to start
-        run: docker-compose logs app | grep -q 'vite server ready'
-
       - name: Install dependencies
         run: docker-compose exec app npm ci
 
